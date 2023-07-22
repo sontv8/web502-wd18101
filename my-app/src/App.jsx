@@ -5,6 +5,7 @@ import './App.css'
 import HomePage from './pages/HomePage';
 import { Route, Routes } from 'react-router-dom'
 import DetailPage from './pages/Detail';
+import Dashboard from './pages/Admin/Dashboard';
 
 
 /*
@@ -28,6 +29,8 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage products={products} />} />
         <Route path='/detail/:id' element={<DetailPage />} />
+
+        <Route path='/admin' element={<Dashboard />} />
       </Routes>
 
     </>
