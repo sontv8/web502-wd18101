@@ -2,18 +2,25 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import HomePage from './pages/Home'
+import HomePage from './pages/HomePage';
+import { Route, Routes } from 'react-router-dom'
+import DetailPage from './pages/Detail';
 
-const products = [
-  { id: 1, name: "Product 1", price: 100 },
-  { id: 2, name: "Product 2", price: 200 },
-  { id: 3, name: "Product 3", price: 300 }
-]
 
+/*
+  B1: Cài đặt thư viện react-router-dom
+  B2: wrap toàn bộ ứng dụng bằng component <BrowserRouter>
+  B3: Tạo các route bằng component <Route>
+  B4: wrap toàn bộ router bằng component <Routes>
+*/
 function App() {
   return (
     <>
-      <HomePage data={products} />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/detail' element={<DetailPage />} />
+      </Routes>
+
     </>
   )
 }
