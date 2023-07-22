@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -13,12 +13,21 @@ import DetailPage from './pages/Detail';
   B3: Tạo các route bằng component <Route>
   B4: wrap toàn bộ router bằng component <Routes>
 */
+
 function App() {
+
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+    fetch('http://localhost:3000/products')
+      .then(response => response.json())
+      .then(data => setProducts(data))
+  }, [])
+
   return (
     <>
       <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/detail' element={<DetailPage />} />
+        <Route path='/' element={<HomePage products={products} />} />
+        <Route path='/detail/:id' element={<DetailPage />} />
       </Routes>
 
     </>
