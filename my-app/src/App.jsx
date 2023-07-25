@@ -24,13 +24,21 @@ function App() {
       .then(data => setProducts(data))
   }, [])
 
+  const deleteProduct = (id) => {
+    fetch(`http://localhost:3000/products/${id}`, {
+      method: 'DELETE'
+    }).then(() => setProducts(products.filter((item) => item.id != id)))
+
+
+  }
+
   return (
     <>
       <Routes>
         <Route path='/' element={<HomePage products={products} />} />
         <Route path='/detail/:id' element={<DetailPage products={products} />} />
 
-        <Route path='/admin' element={<Dashboard />} />
+        <Route path='/admin' element={<Dashboard products={products} deleteProduct={deleteProduct} />} />
       </Routes>
 
     </>

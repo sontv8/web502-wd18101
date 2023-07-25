@@ -1,8 +1,14 @@
 import React from 'react'
 
-const Dashboard = () => {
+const Dashboard = ({ products, deleteProduct }) => {
+
+    const onHandleRemove = (id) => {
+        deleteProduct(id)
+    }
+
     return (
         <div>
+            <button>Add New Product</button>
             <table>
                 <thead>
                     <tr>
@@ -13,12 +19,18 @@ const Dashboard = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    {products.map((item, index) => {
+                        return (
+                            <tr key={index + 1}>
+                                <td>{index + 1}</td>
+                                <td>{item.name}</td>
+                                <td>{item.price}</td>
+                                <td>
+                                    <button onClick={() => onHandleRemove(item.id)}>Delete</button>
+                                </td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </div>
