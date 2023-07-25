@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Dashboard = ({ products, deleteProduct }) => {
 
@@ -8,7 +9,7 @@ const Dashboard = ({ products, deleteProduct }) => {
 
     return (
         <div>
-            <button>Add New Product</button>
+            <Link to={`/admin/product/add`}><button>Add New Product</button></Link>
             <table>
                 <thead>
                     <tr>

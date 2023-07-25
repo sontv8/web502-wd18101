@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import { Route, Routes } from 'react-router-dom'
 import DetailPage from './pages/Detail';
 import Dashboard from './pages/Admin/Dashboard';
+import AddProductPage from './pages/Admin/AddProduct';
 
 
 /*
@@ -28,8 +29,16 @@ function App() {
     fetch(`http://localhost:3000/products/${id}`, {
       method: 'DELETE'
     }).then(() => setProducts(products.filter((item) => item.id != id)))
+  }
 
-
+  const addProduct = (product) => {
+    fetch(`http://localhost:3000/products`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(product)
+    })
   }
 
   return (
@@ -39,6 +48,7 @@ function App() {
         <Route path='/detail/:id' element={<DetailPage products={products} />} />
 
         <Route path='/admin' element={<Dashboard products={products} deleteProduct={deleteProduct} />} />
+        <Route path='/admin/product/add' element={<AddProductPage addProduct={addProduct} />} />
       </Routes>
 
     </>
